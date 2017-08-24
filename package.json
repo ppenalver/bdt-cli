@@ -1,19 +1,26 @@
 {
-  "name": "bdt-cli",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pjpenast/bdt-cli.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pjpenast/bdt-cli/issues"
-  },
-  "homepage": "https://github.com/pjpenast/bdt-cli#readme"
+   "name": "bdt-cli",
+   "version": "0.0.1",
+   "description": "",
+   "bin": {
+      "bdt": "./bin/bdt"
+   },
+   "main": "index.js",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pjpenast/bdt-cli.git"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/pjpenast/bdt-cli/issues"
+   },
+   "homepage": "https://github.com/pjpenast/bdt-cli#readme",
+   "dependencies": {
+      "asyncawait": "^1.0.6",
+      "bluebird": "^3.5.0",
+      "commander": "^2.11.0",
+      "figlet": "^1.2.0",
+      "inquirer": "^3.2.2"
+   }
 }

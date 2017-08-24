@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const config = require('../package.json');
+const figlet = require('figlet');
+const inquirer = require('inquirer');
+
+const fileSystem = require('../src/functions/fileSystem');
+const createJenkins = require('../src/functions/createJenkins');
+
+/// Command Init
+
+program.version(config.version).command('init').action(() => {
+   console.log('Init app');
+
+   inquirer
+      .prompt({
+         message: 'The acceptance test folder will be created. Are you sure?',
+         name: 'create',
+         type: 'confirm'
+      })
+      .then(() => {
+         let config = {};
+
+         inquirer
+            .prompt({
+               message: 'What name do you want the folder to have?',
+               name: 'folderName',
+               default: 'testAT',
+               validate: function(value) {
+                  let done = this.async();
+
+                  fileSystem
+                     .ensureExists(value)
+                     .then(() => done(null, true))
+                     .catch(() => {
+                        done('A folder with that name already created');
+                     });
+               },
+               type: 'input'
+            })
+            .then(res => {
+               config.folderName = res.folderName;
+
+               fileSystem.createFolder(config.folderName).then(() => {
+                  createJenkins.configJenkins(config);
+               });
+            });
+      })
+      .catch(() => {
+         process.exit(1);
+      });
+});
+
+/// Command Create Test
+program.version(config.version).command('create [test]').action(test => {
+   console.log(test);
+});
+
+program.parse(process.argv);
