@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 
 module.exports = {
    createFolder: name => {
-      let directory = path.join(__dirname, '../../', name);
+      let directory = path.join(process.cwd(), name);
 
       return new Promise((resolve, reject) => {
          ensureExists(directory, err => {
@@ -17,7 +17,7 @@ module.exports = {
       });
    },
    ensureExists: name => {
-      let directory = path.join(__dirname, '../../', name);
+      let directory = path.join(process.cwd(), name);
 
       return new Promise((resolve, reject) => {
          fs.exists(directory, err => {

@@ -4,10 +4,10 @@ module.exports = function(config) {
 
       hose {
          EMAIL = '${config.email}'
-         SLACKTEAM = '${config.slackTeam}'
+         SLACKTEAM = '${config.slack}'
 
-         MODULE = '${config.repositoryName}'
-         REPOSITORY = '${config.repositoryName}'
+         MODULE = '${config.repository}'
+         REPOSITORY = '${config.repository}'
 
          DEVTIMEOUT = '${config.timeout}'
          RELEASETIMEOUT = '${config.timeout}'

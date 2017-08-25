@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuites>
+<testsuite failures="2" name="com.stratio.at.datadictionary.DGPB_458_DataDictionaryGetMetadataForTableObjectsIT.[DGPB-458] Data dictionary get Metadata For table objects" skipped="0" tests="3" time="6.638880495" timestamp="Tue Aug 22 09:48:24 CEST 2017">
+<testcase classname="com.stratio.at.datadictionary.DGPB_458_DataDictionaryGetMetadataForTableObjectsIT" name="The same datastore is showed two times" time="0.0">
+<failure message="&#13;&#10;The scenario has no valid reason for being ignored. &#10; Valid values: @tillfixed(ISSUE-007) @unimplemented @manual @toocomplex&#13;&#10;"/>
+</testcase>
+<testcase classname="com.stratio.at.datadictionary.DGPB_458_DataDictionaryGetMetadataForTableObjectsIT" name="The table is extracted correctly" time="6.638880495">
+<system-out><![CDATA[
+Given My app is running in '172.19.0.215:8043'..............................................................................................passed
+And I browse to '/dictionary/data-dictionary'...............................................................................................passed
+When '1' elements exists with 'id:undefinedbutton'..........................................................................................passed
+Then I click on the element on index '0'....................................................................................................passed
+When '1' elements exists with 'id:undefineditem1'...........................................................................................passed
+Then I click on the element on index '0'....................................................................................................passed
+When '1' elements exists with 'xpath:/html/body/app-root/app-layout/div/div/div/dg-data-dictionary/section/div/div[1]/div/dg-datatable-container/dg-datatable/div/div[2]/st-list/section/ul/st-list-item/li'passed
+Then the element on index '0' has 'Meetup' as text..........................................................................................passed
+Then I click on the element on index '0'....................................................................................................passed
+When '1' elements exists with 'xpath:/html/body/app-root/app-layout/div/div/div/dg-data-dictionary/section/div/div[2]/dg-data-detail-container/div/div/dg-data-column/div/div[2]/div/dg-data-field[1]/div/div/st-input/div/div/input'passed
+Then the element on index '0' has 'value' as 'Meetup'.......................................................................................passed
+When '1' elements exists with 'xpath:/html/body/app-root/app-layout/div/div/div/dg-data-dictionary/section/div/div[2]/dg-data-detail-container/div/div/div/dg-data-column/div/div[2]/div/div[1]/dg-data-field[1]/div/div/st-input/div/div/input'passed
+Then the element on index '0' has 'value' as 'name'.........................................................................................passed
+When '1' elements exists with 'xpath:/html/body/app-root/app-layout/div/div/div/dg-data-dictionary/section/div/div[2]/dg-data-detail-container/div/div/div/dg-data-column/div/div[2]/div/div[2]/dg-data-field[1]/div/div/st-input/div/div/input'passed
+Then the element on index '0' has 'value' as 'going'........................................................................................passed
+When '1' elements exists with 'xpath:/html/body/app-root/app-layout/div/div/div/dg-data-dictionary/section/div/div[2]/dg-data-detail-container/div/div/div/dg-data-column/div/div[2]/div/div[3]/dg-data-field[1]/div/div/st-input/div/div/input'passed
+Then the element on index '0' has 'value' as 'organizer'....................................................................................passed
+When '1' elements exists with 'xpath:/html/body/app-root/app-layout/div/div/div/dg-data-dictionary/section/div/div[2]/dg-data-detail-container/div/div/div/dg-data-column/div/div[2]/div/div[4]/dg-data-field[1]/div/div/st-input/div/div/input'passed
+Then the element on index '0' has 'value' as 'meetup_date'..................................................................................passed
+
+]]></system-out>
+</testcase>
+<testcase classname="com.stratio.at.datadictionary.DGPB_458_DataDictionaryGetMetadataForTableObjectsIT" name="The elements in the column is correct 5 instead 4. It is, the hdfs should extract the filed with &quot;/&quot; character" time="0.0">
+<failure message="&#13;&#10;The scenario has no valid reason for being ignored. &#10; Valid values: @tillfixed(ISSUE-007) @unimplemented @manual @toocomplex&#13;&#10;"/>
+</testcase>
+</testsuite>
+</testsuites>

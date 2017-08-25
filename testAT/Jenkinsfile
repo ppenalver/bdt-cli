@@ -2,11 +2,11 @@
       @Library('libpipelines@master') _
 
       hose {
-         EMAIL = ''
-         SLACKTEAM = 'undefined'
+         EMAIL = 'nose@nose.com'
+         SLACKTEAM = 'nose'
 
-         MODULE = 'undefined'
-         REPOSITORY = 'undefined'
+         MODULE = 'nose'
+         REPOSITORY = 'nose'
 
          DEVTIMEOUT = '30'
          RELEASETIMEOUT = '30'

@@ -7,9 +7,10 @@ const inquirer = require('inquirer');
 
 const fileSystem = require('../src/functions/fileSystem');
 const createJenkins = require('../src/functions/createJenkins');
+const createConfig = require('../src/functions/createConfig');
+const test = require('../src/functions/test');
 
 /// Command Init
-
 program.version(config.version).command('init').action(() => {
    console.log('Init app');
 
@@ -43,7 +44,10 @@ program.version(config.version).command('init').action(() => {
                config.folderName = res.folderName;
 
                fileSystem.createFolder(config.folderName).then(() => {
-                  createJenkins.configJenkins(config);
+                  createJenkins.configJenkins(config).then(config => {
+                     console.log(config);
+                     createConfig.saveConfig(config);
+                  });
                });
             });
       })
@@ -52,9 +56,22 @@ program.version(config.version).command('init').action(() => {
       });
 });
 
-/// Command Create Test
-program.version(config.version).command('create [test]').action(test => {
-   console.log(test);
-});
+/// Command Test
+program
+   .version(config.version)
+   .command('test')
+   .option('-o, --only', 'Add only')
+   .option('-c, --create', 'Add create')
+   .action(program => {
+      if (program.only) {
+         return test.testOnly();
+      } else if (program.create) {
+         return test
+            .testCreate()
+            .then(() => console.log('Test created correctly'));
+      } else {
+      }
+   })
+   .parse(process.argv);
 
 program.parse(process.argv);

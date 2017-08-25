@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuites>
+<testsuite failures="1" name="com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns.[DGPB-619] Order Columns" skipped="0" tests="1" time="37.551266991999995" timestamp="Wed Aug 23 08:15:26 CEST 2017">
+<testcase classname="com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns" name="Select and datastore" time="37.551266991999995">
+<failure message="&#13;&#10;Given My app is running in '172.19.0.215:8043'..............................................................................................passed&#10;And I browse to '/dictionary/data-dictionary'...............................................................................................passed&#10;When '1' elements exists with 'xpath://st-dropdown-menu[@id=&quot;dropdown-datastoremenu&quot;]//li[contains(. , &quot;hakama&quot;)]'..........................failed&#10;&#13;&#10;"><![CDATA[org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:149)
+	at com.stratio.qa.aspects.AssertJAspect.aroundLogAssertJFailurePointcut(AssertJAspect.java:45)
+	at com.stratio.qa.assertions.SeleniumAssert.hasSize(SeleniumAssert.java:296)
+	at com.stratio.qa.specs.CommonG.locateElement(CommonG.java:376)
+	at com.stratio.qa.specs.ThenGSpec.assertSeleniumNElementExists(ThenGSpec.java:289)
+	at ✽.When '1' elements exists with 'xpath://st-dropdown-menu[@id="dropdown-datastoremenu"]//li[contains(. , "hakama")]'(src/test/resources/features/DataDictionary/DGPB_619_DataDictionaryOrderColumns.feature:7)
+]]></failure>
+</testcase>
+</testsuite>
+</testsuites>

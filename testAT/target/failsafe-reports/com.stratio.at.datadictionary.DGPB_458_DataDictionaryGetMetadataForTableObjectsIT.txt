@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.stratio.at.datadictionary.DGPB_458_DataDictionaryGetMetadataForTableObjectsIT
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.571 sec - in com.stratio.at.datadictionary.DGPB_458_DataDictionaryGetMetadataForTableObjectsIT
