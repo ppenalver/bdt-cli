@@ -10,9 +10,12 @@ var self = (module.exports = {
       return new Promise((resolve, reject) => {
          config = Object.assign({}, parameters, config);
 
-         let file = path.join(__dirname, '../../', '.env');
+         let file = path.join(process.cwd(), '.env');
 
-         fs.unlinkSync(file);
+         if (fs.existsSync(file)) {
+            fs.unlinkSync(file);
+         }
+
          fs.writeFile(file, self.parseConfig(config), err => {
             if (err) {
                reject(err);
@@ -26,7 +29,7 @@ var self = (module.exports = {
       let string = '';
 
       Object.keys(config).forEach(key => {
-         if (key != 'parsed')
+         if (key != 'parsed' && key != 'error')
             string += `${key.toUpperCase()} = ${config[key]}\n`;
       });
 

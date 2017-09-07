@@ -98,11 +98,6 @@ module.exports = function(config) {
             <version>6.9.9</version>
         </dependency>
         <dependency>
-            <groupId>com.stratio.governance</groupId>
-            <artifactId>model</artifactId>
-            <version>0.3.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <version>42.1.1</version>

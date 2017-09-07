@@ -4,24 +4,28 @@ const Promise = require('bluebird');
 const config = require('dotenv').config();
 const inquirer = require('inquirer');
 const execute = require('./execute');
+const colors = require('colors');
 
 const templateJava = require('../templates/test.java');
 const templateFeature = require('../templates/test.feature');
+
+const folderName = process.env.FOLDERNAME || '';
+const folderRepository = process.env.REPOSITORY || '';
 
 const appDir = process.cwd();
 
 const directoryJava = path.join(
    appDir,
-   process.env.FOLDERNAME,
+   folderName,
    'src/test/java/com/stratio/at/',
-   process.env.REPOSITORY
+   folderRepository
 );
 
 const directoryFeature = path.join(
    appDir,
-   process.env.FOLDERNAME,
+   folderName,
    'src/test/resources/features/',
-   process.env.REPOSITORY
+   folderRepository
 );
 
 var createFolder = function() {
@@ -38,13 +42,17 @@ var createJava = function(config) {
    return new Promise((resolve, reject) => {
       let nameFile = `${config.number
          .toUpperCase()
-         .replace('-', '_')}_${config.name.toUpperCase().replace('-', '')}`;
+         .replace('-', '_')}_${config.name
+         .toUpperCase()
+         .replace('-', '')
+         .replace(new RegExp(' ', 'g'), '_')}`;
 
       fs.writeFile(
          path.join(directoryJava, nameFile + 'IT.java'),
          templateJava({
             name: nameFile,
-            repository: process.env.REPOSITORY
+            repository: folderRepository,
+            groupId: process.env.GROUPID
          }),
          err => {
             if (err) {
@@ -58,9 +66,12 @@ var createJava = function(config) {
 };
 
 var createFeature = function(config) {
-   let nameFile = `${config.number.toUpperCase()}_${config.name
+   let nameFile = `${config.number
       .toUpperCase()
-      .replace('-', '')}`;
+      .replace('-', '_')}_${config.name
+      .toUpperCase()
+      .replace('-', '')
+      .replace(new RegExp(' ', 'g'), '_')}`;
 
    return new Promise((resolve, reject) => {
       fs.writeFile(
@@ -77,34 +88,85 @@ var createFeature = function(config) {
    });
 };
 
+var selectTests = function() {
+   return new Promise((resolve, reject) => {
+      let tests = [];
+
+      fs.readdir(directoryJava, (err, files) => {
+         if (err) {
+            console.log('No tests available. Create one and try again'.red);
+            reject(false);
+            return;
+         }
+
+         if (!files.length) {
+            console.log('No tests available. Create one and try again'.red);
+            reject(false);
+            return;
+         }
+
+         files.forEach(file => {
+            tests.push(file.replace('IT.java', ''));
+         });
+
+         inquirer
+            .prompt({
+               message: 'Select one test',
+               type: 'list',
+               choices: tests,
+               name: 'test'
+            })
+            .then(response => {
+               resolve(response.test);
+            });
+      });
+   });
+};
+
+var removeTest = test => {
+   fs.unlinkSync(path.join(directoryJava, test + 'IT.java'));
+   fs.unlinkSync(path.join(directoryFeature, test + '.feature'));
+};
+
 var self = (module.exports = {
+   testAll: () => {
+      return new Promise((resolve, reject) => {
+         return execute.executeSelenium().then(() => {
+            return execute.executeAllTest();
+         });
+      });
+   },
+
+   testRemove: () => {
+      return new Promise((resolve, reject) => {
+         return selectTests().then(response => {
+            inquirer
+               .prompt({
+                  message: 'Are you sure to delete this test?',
+                  name: 'delete',
+                  type: 'confirm'
+               })
+               .then(() => {
+                  removeTest(response);
+                  resolve(true);
+               });
+         });
+      });
+   },
+
    testOnly: () => {
       let tests = [];
 
       return new Promise((resolve, reject) => {
-         console.log(directoryJava);
+         let test;
 
-         fs.readdir(directoryJava, (err, files) => {
-            files.forEach(file => {
-               tests.push(file.replace('IT.java', ''));
-            });
-
-            inquirer
-               .prompt({
-                  message: 'Select one test',
-                  type: 'list',
-                  choices: tests,
-                  name: 'test'
-               })
-               .then(response => {
-                  return execute.executeSelenium().then(() => {
-                     return execute.executeTest(response.test);
-                  });
-               })
-               .then(response => {
-                  resolve(true);
-               });
-         });
+         return selectTests()
+            .then(response => {
+               test = response;
+               return execute.executeSelenium();
+            })
+            .then(() => execute.executeTest(test))
+            .then(() => resolve(true));
       });
    },
    testCreate: () => {

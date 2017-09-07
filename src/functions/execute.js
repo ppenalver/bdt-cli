@@ -3,8 +3,9 @@ const Promise = require('bluebird');
 const path = require('path');
 const ip = require('ip');
 
-const directoryBase = path.join(process.cwd(), process.env.FOLDERNAME);
+const FOLDERNAME = process.env.FOLDERNAME || '';
 
+const directoryBase = path.join(process.cwd(), FOLDERNAME);
 const directory = path.join(directoryBase, 'src/test/resources');
 
 var self = (module.exports = {
@@ -12,9 +13,36 @@ var self = (module.exports = {
       return new Promise((resolve, reject) => {
          process.env.HOST_IP = ip.address();
 
-         let selenium = exec(
-            './selenium_service.sh start',
+         let seleniumStop = exec(
+            './selenium_service.sh stop',
             { cwd: directory },
+            err => {}
+         );
+
+         seleniumStop.on('close', data => {
+            let selenium = exec(
+               './selenium_service.sh start',
+               { cwd: directory },
+               err => {
+                  if (err) {
+                     reject(err);
+                  }
+
+                  resolve(true);
+               }
+            );
+
+            selenium.stdout.on('data', data => console.log(data));
+         });
+      });
+   },
+   executeTest: testName => {
+      return new Promise((resolve, reject) => {
+         let test = exec(
+            `mvn verify -DHOST=${process.env.HOST_TEST} -DPORT=${process.env
+               .PORT_TEST} -Dit.test=${process.env
+               .GROUPID}.${testName}IT -DSELENIUM_GRID=${ip.address()}:4444`,
+            { cwd: directoryBase },
             err => {
                if (err) {
                   reject(err);
@@ -24,15 +52,19 @@ var self = (module.exports = {
             }
          );
 
-         selenium.stdout.on('data', data => console.log(data));
+         test.stdout.on('data', data => console.log(data));
       });
    },
-   executeTest: testName => {
+   executeAllTest: () => {
       return new Promise((resolve, reject) => {
+         console.log(
+            `mvn verify -DHOST=${process.env.HOST_TEST} -DPORT=${process.env
+               .PORT_TEST} -Dgroups=basic -DSELENIUM_GRID=${ip.address()}:4444`
+         );
+
          let test = exec(
-            `mvn verify -DDICTIONARY_HOST=${ip.address()} -DDICTIONARY_PORT=8043 -Dit.test=${process
-               .env
-               .GROUPID}.${testName}IT -DSELENIUM_GRID=${ip.address()}:4444`,
+            `mvn verify -DHOST=${process.env.HOST_TEST} -DPORT=${process.env
+               .PORT_TEST} -Dgroups=basic -DSELENIUM_GRID=${ip.address()}:4444`,
             { cwd: directoryBase },
             err => {
                if (err) {

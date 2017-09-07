@@ -4,72 +4,129 @@ const program = require('commander');
 const config = require('../package.json');
 const figlet = require('figlet');
 const inquirer = require('inquirer');
+const colors = require('colors');
 
 const fileSystem = require('../src/functions/fileSystem');
 const createJenkins = require('../src/functions/createJenkins');
 const createConfig = require('../src/functions/createConfig');
 const test = require('../src/functions/test');
+const check = require('../src/functions/check');
+const ip = require('ip');
+
+/// Welcome Message
+
+console.log('-------'.green);
+console.log('BDT CLI'.green);
+console.log('-------'.green);
+console.log(`Version: ${config.version}`.white);
+console.log(''.white);
+
+/// Process environments
+process.env.PORT_TEST = 8043;
+process.env.HOST_TEST = ip.address();
 
 /// Command Init
-program.version(config.version).command('init').action(() => {
-   console.log('Init app');
+program
+   .version(config.version)
+   .command('init')
+   .action(() => {
+      inquirer
+         .prompt({
+            message:
+               'The acceptance test folder will be created. Are you sure?',
+            name: 'create',
+            type: 'confirm'
+         })
+         .then(() => {
+            let parameters = {};
 
-   inquirer
-      .prompt({
-         message: 'The acceptance test folder will be created. Are you sure?',
-         name: 'create',
-         type: 'confirm'
-      })
-      .then(() => {
-         let config = {};
+            inquirer
+               .prompt({
+                  message: 'What name do you want the folder to have?',
+                  name: 'folderName',
+                  default: 'testAT',
+                  validate: function(value) {
+                     let done = this.async();
 
-         inquirer
-            .prompt({
-               message: 'What name do you want the folder to have?',
-               name: 'folderName',
-               default: 'testAT',
-               validate: function(value) {
-                  let done = this.async();
+                     fileSystem
+                        .ensureExists(value)
+                        .then(() => done(null, true))
+                        .catch(() => {
+                           done('A folder with that name already created');
+                        });
+                  },
+                  type: 'input'
+               })
+               .then(res => {
+                  parameters.folderName = res.folderName;
 
-                  fileSystem
-                     .ensureExists(value)
-                     .then(() => done(null, true))
-                     .catch(() => {
-                        done('A folder with that name already created');
+                  fileSystem.createFolder(parameters.folderName).then(() => {
+                     createJenkins.configJenkins(parameters).then(params => {
+                        createConfig.saveConfig(params);
                      });
-               },
-               type: 'input'
-            })
-            .then(res => {
-               config.folderName = res.folderName;
-
-               fileSystem.createFolder(config.folderName).then(() => {
-                  createJenkins.configJenkins(config).then(config => {
-                     console.log(config);
-                     createConfig.saveConfig(config);
                   });
                });
-            });
-      })
-      .catch(() => {
-         process.exit(1);
-      });
-});
+         })
+         .catch(() => {
+            process.exit(1);
+         });
+   });
+
+/// Command Config
+program
+   .version(config.verison)
+   .command('config')
+   .action(program => {
+      inquirer
+         .prompt({
+            message: 'What name do you want the folder to have?',
+            name: 'folderName',
+            type: 'input'
+         })
+         .then(res => {
+            let parameters = {};
+            parameters.folderName = res.folderName;
+            return createJenkins.confiqQuestions(parameters);
+         })
+         .then(params => createConfig.saveConfig(params));
+   });
 
 /// Command Test
 program
    .version(config.version)
    .command('test')
    .option('-o, --only', 'Add only')
+   .option('-p, --port <port>', 'Add port')
+   .option('-h, --host <host>', 'Add host')
    .option('-c, --create', 'Add create')
+   .option('-d, --delete', 'Add delete')
    .action(program => {
+      if (program.port) {
+         process.env.PORT_TEST = program.port;
+      }
+
+      if (program.host) {
+         process.env.HOST_TEST = program.host;
+      }
+
+      if (program.delete) {
+         if (check.checkEnv()) {
+            return test.testRemove();
+         }
+      }
+
       if (program.only) {
-         return test.testOnly();
+         if (check.checkEnv()) {
+            return test.testOnly();
+         }
       } else if (program.create) {
          return test
             .testCreate()
             .then(() => console.log('Test created correctly'));
       } else {
+         if (check.checkEnv()) {
+            return test.testAll();
+         }
       }
    })
    .parse(process.argv);

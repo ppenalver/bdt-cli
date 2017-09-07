@@ -9,6 +9,17 @@ const ncp = require('ncp').ncp;
 var self = (module.exports = {
    configJenkins: config => {
       return new Promise((resolve, reject) => {
+         return self
+            .configQuestions(config)
+            .createJenkins(config)
+            .then(() => self.createPom(config))
+            .then(() => self.copyFolder(config))
+            .then(() => resolve(config));
+      });
+   },
+
+   confiqQuestions: config => {
+      return new Promise((resolve, reject) => {
          let questions = [
             { message: 'Email Team', name: 'email', type: 'input' },
             { message: 'Slack Team', name: 'slack', type: 'input' },
@@ -22,11 +33,7 @@ var self = (module.exports = {
          prompt(questions).then(response => {
             config = Object.assign({}, config, response);
 
-            return self
-               .createJenkins(config)
-               .then(() => self.createPom(config))
-               .then(() => self.copyFolder(config))
-               .then(() => resolve(config));
+            resolve(config);
          });
       });
    },
