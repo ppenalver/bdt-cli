@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns" time="48.506" tests="1" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
+    <property name="java.vm.version" value="25.131-b11"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/pjpena/Documentos/projects/governance/dg-datadictionary-ui/testAT"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/pjpena/Documentos/projects/governance/dg-datadictionary-ui/testAT"/>
+    <property name="groups" value="data_dictionary"/>
+    <property name="java.runtime.version" value="1.8.0_131-8u131-b11-2ubuntu1.16.04.3-b11"/>
+    <property name="DICTIONARY_HOST" value="172.19.0.215"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/usr/share/maven/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="4.4.0-92-generic"/>
+    <property name="user.home" value="/home/pjpena"/>
+    <property name="user.timezone" value="Europe/Madrid"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="pjpena"/>
+    <property name="java.class.path" value="/usr/share/maven/boot/plexus-classworlds-2.x.jar"/>
+    <property name="it.test" value="com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher verify -DDICTIONARY_HOST=172.19.0.215 -DDICTIONARY_PORT=8043 -Dgroups=data_dictionary -Dit.test=com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns -DSELENIUM_GRID=172.19.0.215:4444"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_131"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="securerandom.source" value="file:/dev/./urandom"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/usr/share/maven"/>
+    <property name="DICTIONARY_PORT" value="8043"/>
+    <property name="file.separator" value="/"/>
+    <property name="SELENIUM_GRID" value="172.19.0.215:4444"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase name="DGPB_619_DataDictionaryOrderColumnsTest" classname="com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns" time="42.945">
+    <failure message="org.junit.ComparisonFailure: [Element count doesnt match] expected:&lt;[1]&gt; but was:&lt;[0]&gt;" type="cucumber.runtime.CucumberException"><![CDATA[cucumber.runtime.CucumberException: org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>
+	at com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns.DGPB_619_DataDictionaryOrderColumnsTest(DGPB_619_DataDictionaryOrderColumns.java:36)
+Caused by: org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>
+]]></failure>
+    <system-out><![CDATA[	&amp#27;[32mReflections&amp#27;[m - &amp#27;[32mReflections took 1449 ms to scan 2 urls, producing 10 keys and 17 values &amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mStarting running feature [DGPB-619] Order Columns&amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to scenario Select and datastore life cycle start&amp#27;[m
+&amp#27;[34m   Feature/Scenario: [DGPB-619] Order Columns/Select and datastore 
+&amp#27;[m	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to [DGPB-619] Order Columns/Select and datastore &amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to step My app is running in '${DICTIONARY_HOST}:${DICTIONARY_PORT}' &amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to step I browse to '/dictionary/data-dictionary' &amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to step '1' elements exists with 'xpath://st-dropdown-menu[@id="dropdown-datastoremenu"]//li[contains(. , "hakama")]' &amp#27;[m
+&amp#27;[36m     Given My app is running in '172.19.0.215:8043'
+&amp#27;[m	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mDone executing Select and datastore: passed&amp#27;[m
+&amp#27;[36m     And I browse to '/dictionary/data-dictionary'
+&amp#27;[m	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mDone executing Select and datastore: passed&amp#27;[m
+&amp#27;[36m     When '1' elements exists with 'xpath://st-dropdown-menu[@id="dropdown-datastoremenu"]//li[contains(. , "hakama")]'
+&amp#27;[m	&amp#27;[1;31mAssertJAspect&amp#27;[m - &amp#27;[1;31mAssertion failed: [Element count doesnt match] expected:<[1]> but was:<[0]>&amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mDone executing Select and datastore: failed&amp#27;[m
+&amp#27;[34m   
+&amp#27;[m	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to scenario Select and datastore life cycle end&amp#27;[m
+	&amp#27;[32mCukesHooks&amp#27;[m - &amp#27;[32mGot to end of file&amp#27;[m
+
+1 Scenarios (&amp#27;[31m1 failed&amp#27;[0m)
+3 Steps (&amp#27;[31m1 failed&amp#27;[0m, &amp#27;[32m2 passed&amp#27;[0m)
+0m37.551s
+
+org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at org.aspectj.runtime.reflect.JoinPointImpl.proceed(JoinPointImpl.java:149)
+	at com.stratio.qa.aspects.AssertJAspect.aroundLogAssertJFailurePointcut(AssertJAspect.java:45)
+	at com.stratio.qa.assertions.SeleniumAssert.hasSize(SeleniumAssert.java:296)
+	at com.stratio.qa.specs.CommonG.locateElement(CommonG.java:376)
+	at com.stratio.qa.specs.ThenGSpec.assertSeleniumNElementExists(ThenGSpec.java:289)
+	at ✽.When '1' elements exists with 'xpath://st-dropdown-menu[@id="dropdown-datastoremenu"]//li[contains(. , "hakama")]'(src/test/resources/features/DataDictionary/DGPB_619_DataDictionaryOrderColumns.feature:7)
+
+	&amp#27;[1;31mCucumberRunner&amp#27;[m - &amp#27;[1;31mGot [org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>] exceptions&amp#27;[m
+]]></system-out>
+    <system-err><![CDATA[log4j:WARN No appenders could be found for logger (org.apache.http.client.protocol.RequestAddCookies).
+log4j:WARN Please initialize the log4j system properly.
+]]></system-err>
+  </testcase>
+</testsuite>

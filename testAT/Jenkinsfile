@@ -1,0 +1,36 @@
+
+      @Library('libpipelines@master') _
+
+      hose {
+         EMAIL = 'nose@nose.com'
+         SLACKTEAM = 'nose'
+
+         MODULE = 'nose'
+         REPOSITORY = 'nose'
+
+         DEVTIMEOUT = '30'
+         RELEASETIMEOUT = '30'
+
+         PKGMODULESNAMES = ['30']
+
+         ATSERVICES = []
+
+         ATPARAMETERS = """
+                    |
+                    |"""
+
+
+         DEV = { config ->
+            doCompile(config)
+            doUT(config)
+            doPackage(config)
+            doDocker(config)
+            doAT(conf: config, groups: ['basic'])
+         }
+
+         AT = { config ->
+            doAT(conf: config)
+         }
+
+      }
+   

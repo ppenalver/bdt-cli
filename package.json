@@ -1,19 +1,37 @@
 {
-  "name": "bdt-cli",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pjpenast/bdt-cli.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pjpenast/bdt-cli/issues"
-  },
-  "homepage": "https://github.com/pjpenast/bdt-cli#readme"
+   "name": "bdt-cli",
+   "version": "0.0.1",
+   "description": "CLI for Stratio BDT, Acceptance Test Library",
+   "bin": {
+      "bdt": "./bin/bdt"
+   },
+   "main": "index.js",
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/pjpenast/bdt-cli.git"
+   },
+   "scripts": {
+      "ci-publish": "ci-publish",
+      "semantic-release":
+         "semantic-release pre && npm publish && semantic-release post"
+   },
+   "author": "",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/pjpenast/bdt-cli/issues"
+   },
+   "homepage": "https://github.com/pjpenast/bdt-cli#readme",
+   "dependencies": {
+      "bluebird": "3.5.0",
+      "colors": "1.1.2",
+      "commander": "2.11.0",
+      "dotenv": "4.0.0",
+      "figlet": "1.2.0",
+      "inquirer": "3.2.2",
+      "ip": "1.1.5",
+      "ncp": "2.0.0"
+   },
+   "devDependencies": {
+      "semantic-release": "6.3.6"
+   }
 }
