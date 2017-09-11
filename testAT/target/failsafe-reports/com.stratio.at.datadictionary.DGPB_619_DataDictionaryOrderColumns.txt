@@ -1,9 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 48.506 sec <<< FAILURE! - in com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns
-DGPB_619_DataDictionaryOrderColumnsTest(com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns)  Time elapsed: 42.945 sec  <<< FAILURE!
-cucumber.runtime.CucumberException: org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>
-	at com.stratio.at.datadictionary.DGPB_619_DataDictionaryOrderColumns.DGPB_619_DataDictionaryOrderColumnsTest(DGPB_619_DataDictionaryOrderColumns.java:36)
-Caused by: org.junit.ComparisonFailure: [Element count doesnt match] expected:<[1]> but was:<[0]>
-

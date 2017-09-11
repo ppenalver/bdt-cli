@@ -12,7 +12,7 @@ module.exports = function(config) {
          DEVTIMEOUT = '${config.timeout}'
          RELEASETIMEOUT = '${config.timeout}'
 
-         PKGMODULESNAMES = ['${config.timeout}']
+         PKGMODULESNAMES = ['${config.repository}']
 
          ATSERVICES = []
 

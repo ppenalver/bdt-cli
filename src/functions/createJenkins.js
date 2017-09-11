@@ -32,7 +32,7 @@ var self = (module.exports = {
             { message: 'Slack Team', name: 'slack', type: 'input' },
             { message: 'Timeout', default: 30, name: 'timeout', type: 'input' },
             { message: 'Repository Name', name: 'repository', type: 'input' },
-            { message: 'Group ID', name: 'groupId', type: 'input' }
+            { message: 'Package ID', name: 'packageId', type: 'input' }
          ];
 
          let prompt = inquirer.createPromptModule();
