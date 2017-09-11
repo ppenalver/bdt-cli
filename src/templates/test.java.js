@@ -15,7 +15,7 @@ module.exports = function(config) {
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package ${config.groupId};
+package ${config.packageId};
 
 import com.stratio.qa.cucumber.testng.CucumberRunner;
 import com.stratio.qa.data.BrowsersDataProvider;

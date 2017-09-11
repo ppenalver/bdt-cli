@@ -101,6 +101,9 @@ You will have to select from a list the test to be deleted, deleting it will rem
 
 ## Work in progress
 
+- Create and Update of Groups
+- Test for groups
+- Add variables of mvn
 - Create a watcher to observe the tests and execute them when they change
 - Templates to edit and change features
 - Read user stories directly from Jira

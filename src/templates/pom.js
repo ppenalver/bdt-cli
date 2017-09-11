@@ -12,7 +12,7 @@ module.exports = function(config) {
         <version>0.9.0</version>
     </parent>
 
-    <groupId>${config.groupId}</groupId>
+    <groupId>${config.packageId}</groupId>
     <artifactId>acceptance-tests</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <name>acceptance-tests</name>
