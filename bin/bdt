@@ -60,11 +60,10 @@ program
                .then(res => {
                   parameters.folderName = res.folderName;
 
-                  fileSystem.createFolder(parameters.folderName).then(() => {
-                     createJenkins.configJenkins(parameters).then(params => {
-                        createConfig.saveConfig(params);
-                     });
-                  });
+                  return fileSystem
+                     .createFolder(parameters.folderName)
+                     .then(() => createJenkins.configJenkins(parameters))
+                     .then(params => createConfig.saveConfig(params));
                });
          })
          .catch(() => {
