@@ -8,13 +8,20 @@ const ncp = require('ncp').ncp;
 
 var self = (module.exports = {
    configJenkins: config => {
+      let parameters = Object.assign({}, config);
+
       return new Promise((resolve, reject) => {
          return self
-            .configQuestions(config)
-            .createJenkins(config)
-            .then(() => self.createPom(config))
-            .then(() => self.copyFolder(config))
-            .then(() => resolve(config));
+            .confiqQuestions(config)
+            .then(response => {
+               parameters = Object.assign({}, config, response);
+               self.createJenkins(parameters);
+            })
+            .then(() => self.createPom(parameters))
+            .then(() => self.copyFolder(parameters))
+            .then(() => {
+               resolve(parameters);
+            });
       });
    },
 
@@ -72,7 +79,7 @@ var self = (module.exports = {
 
    copyFolder: config => {
       return new Promise((resolve, reject) => {
-         let directory = path.join(__dirname, '../../', config.folderName);
+         let directory = path.join(process.cwd(), config.folderName);
 
          ncp(path.join(__dirname, '../', './copy/testAT/'), directory, err => {
             if (err) {
