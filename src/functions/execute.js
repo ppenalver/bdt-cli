@@ -39,8 +39,8 @@ var self = (module.exports = {
    executeTest: testName => {
       return new Promise((resolve, reject) => {
          let test = exec(
-            `mvn verify -DHOST=${process.env.HOST_TEST} -DPORT=${process.env
-               .PORT_TEST} -Dit.test=${process.env
+            `mvn clean verify -DHOST=${process.env.HOST_TEST} -DPORT=${process
+               .env.PORT_TEST} -Dit.test=${process.env
                .GROUPID}.${testName}IT -DSELENIUM_GRID=${ip.address()}:4444`,
             { cwd: directoryBase },
             err => {
@@ -57,13 +57,9 @@ var self = (module.exports = {
    },
    executeAllTest: () => {
       return new Promise((resolve, reject) => {
-         console.log(
-            `mvn verify -DHOST=${process.env.HOST_TEST} -DPORT=${process.env
-               .PORT_TEST} -Dgroups=basic -DSELENIUM_GRID=${ip.address()}:4444`
-         );
-
          let test = exec(
-            `mvn verify -DHOST=${process.env.HOST_TEST} -DPORT=${process.env
+            `mvn clean verify -DHOST=${process.env.HOST_TEST} -DPORT=${process
+               .env
                .PORT_TEST} -Dgroups=basic -DSELENIUM_GRID=${ip.address()}:4444`,
             { cwd: directoryBase },
             err => {
