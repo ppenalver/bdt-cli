@@ -52,7 +52,7 @@ var createJava = function(config) {
          templateJava({
             name: nameFile,
             repository: folderRepository,
-            groupId: process.env.GROUPID
+            packageId: process.env.PACKAGEID
          }),
          err => {
             if (err) {
