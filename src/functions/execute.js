@@ -41,7 +41,7 @@ var self = (module.exports = {
          let test = exec(
             `mvn clean verify -DHOST=${process.env.HOST_TEST} -DPORT=${process
                .env.PORT_TEST} -Dit.test=${process.env
-               .GROUPID}.${testName}IT -DSELENIUM_GRID=${ip.address()}:4444`,
+               .PACKAGEID}.${testName}IT -DSELENIUM_GRID=${ip.address()}:4444`,
             { cwd: directoryBase },
             err => {
                if (err) {
